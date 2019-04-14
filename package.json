@@ -1,0 +1,14 @@
+{
+  "name": "ant-js-tutorial",
+  "version": "1.0.0",
+  "description": "AntJS tutorial repository.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Roberto Pintos López",
+  "license": "ISC",
+  "dependencies": {
+    "@antjs/ant-sql": "0.0.1"
+  }
+}
