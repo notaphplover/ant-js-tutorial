@@ -1,10 +1,14 @@
 {
-  "name": "ant-js-tutorial",
+  "name": "@antjs/tutorial",
   "version": "1.0.0",
   "description": "AntJS tutorial repository.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/notaphplover/ant-js-tutorial.git"
   },
   "author": "Roberto Pintos López",
   "license": "ISC",
