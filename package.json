@@ -4,6 +4,10 @@
   "description": "AntJS tutorial repository.",
   "main": "index.js",
   "scripts": {
+    "build": "./node_modules/typescript/bin/tsc --build src.tsconfig.commonjs.json",
+    "build-and-test-user-entity-ts": "npm run build && node ./ts/scripts/test-user-entity.js",
+    "clear-js": "node ./scripts/clear-compiled.js",
+    "docker-test-user-entity-ts": "docker-compose -f docker-compose.test-user-entity-ts.yml up --abort-on-container-exit --exit-code-from ant_lib",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -13,6 +17,14 @@
   "author": "Roberto Pintos López",
   "license": "ISC",
   "dependencies": {
-    "@antjs/ant-sql": "0.0.1"
+    "@antjs/ant-js": "^0.2.2",
+    "@antjs/ant-sql": "0.0.1",
+    "pg": "^7.9.0"
+  },
+  "devDependencies": {
+    "@types/bluebird": "^3.5.26",
+    "@types/ioredis": "^4.0.10",
+    "tslint": "^5.15.0",
+    "typescript": "^3.4.3"
   }
 }

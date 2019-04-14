@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "declaration": true,
+    "declarationMap": true,
+    "module": "CommonJS",
+    "noImplicitAny": true,
+    "outDir": "ts",
+    "removeComments": true,
+    "sourceMap": true,
+    "rootDir": "ts",
+    "target": "es2017",
+    "typeRoots": [
+      "./node_modules/@types",
+      "./node_modules/knex/types"
+    ],
+    "types": [
+      "ioredis",
+      "knex",
+      "node"
+    ]
+  },
+  "exclude" : [
+
+  ],
+  "include": [
+    "ts/**/*.ts"
+  ]
+}
