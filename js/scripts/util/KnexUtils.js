@@ -1,21 +1,25 @@
-import * as Knex from 'knex';
 
 /**
  * Creates a new table in the database schema.
- * @param knex Knex instance.
- * @param name Name of the new table.
- * @param columns Columns to add.
- * @returns Promise of table created.
+ * @param { import('knex') } knex Knex instance.
+ * @param { string } name Name of the new table.
+ * @param { object } columns Columns to add.
+ * @returns { Promise<void> } Promise of table created.
  */
 const createTable = async (
-  knex: Knex,
-  name: string,
-  columns: {[key: string]: 'number' | 'string' } = {},
-): Promise<void> => {
+  knex,
+  name,
+  columns = {},
+) => {
   const tableExists = await knex.schema.hasTable(name);
   if (tableExists) { throw new Error(`Table ${name} already exists.`); }
   await knex.schema.createTable(name, (table) => {
-    const addColumn = (name: string, type: 'number' | 'string') => {
+    /**
+     * Adds a column to the table.
+     * @param {string} name Name of the column.
+     * @param {string} type Type of the column.
+     */
+    const addColumn = (name, type) => {
       if ('number' === type) {
         table.integer(name);
       } else if ('string' === type) {
@@ -28,38 +32,40 @@ const createTable = async (
       }
     }
   });
-};
+}
 
 /**
  * Deletes all the tables from the schema.
- * @param knex Knex instance.
- * @returns Promise of tables deleted.
+ * @param { import('knex') } knex Knex instance.
+ * @returns { Promise<any> } Promise of tables deleted.
  */
-const deleteAllTables = async (knex: Knex): Promise<any> => {
+const deleteAllTables = async (knex) => {
   const tables = await listTables(knex);
   return Promise.all(tables.map((table) => knex.schema.dropTable(table)));
 };
 
 /**
  * Inserts an entity in a table.
- * @param knex Knex instance.
- * @param table table name.
- * @param entity Entity to insert.
+ * @param { import('knex') } knex Knex instance.
+ * @param { string } table table name.
+ * @param { Promise<any> } entity Entity to insert.
  */
-const insert = (knex: Knex, table: string, entity: any): Promise<any> => {
-  return knex(table).insert(entity) as unknown as Promise<any>;
+const insert = (knex, table, entity) => {
+  return knex(table).insert(entity);
 };
 
 /**
  * Lists all tables of the database. Obtained from
  * https://github.com/tgriesser/knex/issues/360#issuecomment-406483016
  *
- * @param knex Knex instance.
- * @returns Tables found in the db schema.
+ * @param { import('knex') } knex Knex instance.
+ * @returns { Promise<string[]> } Tables found in the db schema.
  */
-const listTables = (knex: Knex): Promise<string[]> => {
-  let query: string;
-  let bindings: string[];
+const listTables = (knex) => {
+  /** @type string */
+  let query;
+  /** @type string[] */
+  let bindings;
 
   switch (knex.client.driverName) {
     case 'mssql':
@@ -89,15 +95,15 @@ const listTables = (knex: Knex): Promise<string[]> => {
   }
 
   return knex.raw(query, bindings).then((results) => {
-    return results.rows.map((row: any) => row.table_name);
+    return results.rows.map((row) => row.table_name);
   }).catch((err) => {
     throw err;
-  }) as unknown as Promise<string[]>;
+  });
 };
 
-export {
+module.exports = {
   createTable,
   deleteAllTables,
   insert,
   listTables,
-};
+}
