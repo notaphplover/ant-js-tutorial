@@ -1,4 +1,3 @@
-
 /**
  * Creates a new table in the database schema.
  * @param { import('knex') } knex Knex instance.

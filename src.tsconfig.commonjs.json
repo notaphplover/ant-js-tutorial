@@ -5,10 +5,10 @@
     "declarationMap": true,
     "module": "CommonJS",
     "noImplicitAny": true,
-    "outDir": "ts",
+    "outDir": ".",
     "removeComments": true,
     "sourceMap": true,
-    "rootDir": "ts",
+    "rootDir": ".",
     "target": "es2017",
     "typeRoots": [
       "./node_modules/@types",
@@ -24,6 +24,6 @@
 
   ],
   "include": [
-    "ts/**/*.ts"
+    "step-2-adding-a-model/ts/**/*.ts"
   ]
 }

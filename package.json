@@ -5,12 +5,12 @@
   "main": "index.js",
   "scripts": {
     "build": "./node_modules/typescript/bin/tsc --build src.tsconfig.commonjs.json",
-    "build-and-test-user-entity-ts": "npm run build && node ./ts/scripts/test-user-entity.js",
+    "build-and-test-user-entity-ts": "npm run build && node ./step-2-adding-a-model/ts/scripts/test-user-entity.js",
     "clear-js": "node ./scripts/clear-compiled.js",
     "docker-test-user-entity-js": "docker-compose -f docker-compose.test-user-entity-js.yml up --abort-on-container-exit --exit-code-from ant_lib",
     "docker-test-user-entity-ts": "docker-compose -f docker-compose.test-user-entity-ts.yml up --abort-on-container-exit --exit-code-from ant_lib",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "test-user-entity-js": "node ./js/scripts/test-user-entity.js"
+    "test-user-entity-js": "node ./step-2-adding-a-model/js/scripts/test-user-entity.js"
   },
   "repository": {
     "type": "git",
