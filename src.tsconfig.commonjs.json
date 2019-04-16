@@ -24,6 +24,6 @@
 
   ],
   "include": [
-    "step-2-adding-a-model/ts/**/*.ts"
+    "/**/ts/**/*.ts"
   ]
 }

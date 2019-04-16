@@ -18,7 +18,10 @@ async function getFiles(dir) {
   return Array.prototype.concat(...files);
 }
 
-const folderToClear = __dirname + '/../ts';
+const foldersToClear = [
+  __dirname + '/../step-2-adding-a-model/ts',
+  __dirname + '/../step-3-adding-queries/ts',
+];
 const fileExtensions = [
   '.js',
   '.js.map',
@@ -26,15 +29,17 @@ const fileExtensions = [
   'd.ts.map',
 ];
 
-getFiles(folderToClear).then((files) => {
-  files = files.filter(
-    (path) => fileExtensions.find(
-      (extension) => path.endsWith(extension),
-    ),
-  );
-  for (const fileName of files) {
-    unlink(fileName, (err) => {
-      if (err) { throw err; }
-    });
-  }
-}).catch((err) => { console.error(err); });
+for (const folderToClear of foldersToClear) {
+  getFiles(folderToClear).then((files) => {
+    files = files.filter(
+      (path) => fileExtensions.find(
+        (extension) => path.endsWith(extension),
+      ),
+    );
+    for (const fileName of files) {
+      unlink(fileName, (err) => {
+        if (err) { throw err; }
+      });
+    }
+  }).catch((err) => { console.error(err); });
+}
