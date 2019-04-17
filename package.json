@@ -10,9 +10,11 @@
     "clear-js": "node ./scripts/clear-compiled.js",
     "docker-test-user-entity-js": "docker-compose -f docker-compose.test-user-entity-js.yml up --abort-on-container-exit --exit-code-from ant_lib",
     "docker-test-user-entity-ts": "docker-compose -f docker-compose.test-user-entity-ts.yml up --abort-on-container-exit --exit-code-from ant_lib",
+    "docker-test-user-queries-js": "docker-compose -f docker-compose.test-user-queries-js.yml up --abort-on-container-exit --exit-code-from ant_lib",
     "docker-test-user-queries-ts": "docker-compose -f docker-compose.test-user-queries-ts.yml up --abort-on-container-exit --exit-code-from ant_lib",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "test-user-entity-js": "node ./step-2-adding-a-model/js/scripts/test-user-entity.js"
+    "test-user-entity-js": "node ./step-2-adding-a-model/js/scripts/test-user-entity.js",
+    "test-user-queries-js": "node ./step-3-adding-queries/js/scripts/test-user-queries.js"
   },
   "repository": {
     "type": "git",
