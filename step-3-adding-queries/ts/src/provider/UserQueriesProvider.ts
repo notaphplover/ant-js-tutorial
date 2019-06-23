@@ -27,7 +27,7 @@ export class UserQueriesProvider implements IQueryInjector<IUser> {
     knex: Knex,
     userManager: IAntModelManager<IUser, IAntSqlModelConfig>,
     userModel: IAntSqlModel,
-  ) {
+  ): IPrimaryQueryManager<IUser> {
     const usersByUsername = (params: any) => {
       if (!params) {
         throw new Error('Expected params!');
@@ -48,17 +48,17 @@ export class UserQueriesProvider implements IQueryInjector<IUser> {
 
     return userManager.query<number>({
       isMultiple: false,
-      keyGen: (params: any) => 'user/name::' + params.letter,
       query: usersByUsername,
+      queryKeyGen: (params: any) => 'user/name::' + params.letter,
       reverseHashKey: 'user/name/reverse',
-    });
+    }) as IPrimaryQueryManager<IUser>;
   }
 
   private _addUsersStartingByLetterQuery(
     knex: Knex,
     userManager: IAntModelManager<IUser, IAntSqlModelConfig>,
     userModel: IAntSqlModel,
-  ) {
+  ): IPrimaryQueryManager<IUser> {
     const usersStaringByLetterDBQuery = (params: any) => {
       if (!params) {
         throw new Error('Expected params!');
@@ -77,9 +77,9 @@ export class UserQueriesProvider implements IQueryInjector<IUser> {
     };
     return userManager.query<number[]>({
       isMultiple: true,
-      keyGen: (params: any) => 'user/name-start::' + params.letter,
       query: usersStaringByLetterDBQuery,
+      queryKeyGen: (params: any) => 'user/name-start::' + params.letter,
       reverseHashKey: 'user/name-start/reverse',
-    });
+    }) as IPrimaryQueryManager<IUser>;
   }
 }

@@ -23,14 +23,14 @@
   "author": "Roberto Pintos López",
   "license": "ISC",
   "dependencies": {
-    "@antjs/ant-js": "^0.2.2",
-    "@antjs/ant-sql": "0.0.1",
+    "@antjs/ant-js": "^0.5.2",
+    "@antjs/ant-sql": "0.1.0",
     "pg": "^7.9.0"
   },
   "devDependencies": {
-    "@types/bluebird": "^3.5.26",
-    "@types/ioredis": "^4.0.10",
+    "@types/bluebird": "^3.5.27",
+    "@types/ioredis": "^4.0.12",
     "tslint": "^5.15.0",
-    "typescript": "^3.4.3"
+    "typescript": "^3.5.2"
   }
 }

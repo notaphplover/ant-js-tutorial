@@ -62,8 +62,8 @@ class UserQueriesProvider {
 
     return userManager.query({
       isMultiple: false,
-      keyGen: (params) => 'user/name::' + params.letter,
       query: usersByUsername,
+      queryKeyGen: (params) => 'user/name::' + params.letter,
       reverseHashKey: 'user/name/reverse',
     });
   }
@@ -104,8 +104,8 @@ class UserQueriesProvider {
     };
     return userManager.query({
       isMultiple: true,
-      keyGen: (params) => 'user/name-start::' + params.letter,
       query: usersStaringByLetterDBQuery,
+      queryKeyGen: (params) => 'user/name-start::' + params.letter,
       reverseHashKey: 'user/name-start/reverse',
     });
   }
