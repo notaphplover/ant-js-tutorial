@@ -8,6 +8,9 @@ const userModel = new AntSqlModel(
   [{
     entityAlias: 'id',
     sqlName: 'id',
+  }, {
+    entityAlias: 'username',
+    sqlName: 'username',
   }],
   'User',
 );
