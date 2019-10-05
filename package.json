@@ -7,14 +7,18 @@
     "build": "./node_modules/typescript/bin/tsc --build src.tsconfig.commonjs.json",
     "build-and-test-user-entity-ts": "npm run build && node ./step-2-adding-a-model/ts/scripts/test-user-entity.js",
     "build-and-test-user-queries-ts": "npm run build && node ./step-3-adding-queries/ts/scripts/test-user-queries.js",
+    "build-and-test-user-simple-queries-ts": "npm run build && node ./step-3-adding-simple-queries/ts/scripts/test-user-queries.js",
     "clear-js": "node ./scripts/clear-compiled.js",
     "docker-test-user-entity-js": "docker-compose -f docker-compose.test-user-entity-js.yml up --abort-on-container-exit --exit-code-from ant_lib",
     "docker-test-user-entity-ts": "docker-compose -f docker-compose.test-user-entity-ts.yml up --abort-on-container-exit --exit-code-from ant_lib",
     "docker-test-user-queries-js": "docker-compose -f docker-compose.test-user-queries-js.yml up --abort-on-container-exit --exit-code-from ant_lib",
     "docker-test-user-queries-ts": "docker-compose -f docker-compose.test-user-queries-ts.yml up --abort-on-container-exit --exit-code-from ant_lib",
+    "docker-test-user-simple-queries-js": "docker-compose -f docker-compose.test-user-simple-queries-js.yml up --abort-on-container-exit --exit-code-from ant_lib",
+    "docker-test-user-simple-queries-ts": "docker-compose -f docker-compose.test-user-simple-queries-ts.yml up --abort-on-container-exit --exit-code-from ant_lib",
     "test": "echo \"Error: no test specified\" && exit 1",
     "test-user-entity-js": "node ./step-2-adding-a-model/js/scripts/test-user-entity.js",
-    "test-user-queries-js": "node ./step-3-adding-queries/js/scripts/test-user-queries.js"
+    "test-user-queries-js": "node ./step-3-adding-queries/js/scripts/test-user-queries.js",
+    "test-user-simple-queries-js": "node ./step-3-adding-simple-queries/js/scripts/test-user-queries.js"
   },
   "repository": {
     "type": "git",
@@ -24,7 +28,7 @@
   "license": "ISC",
   "dependencies": {
     "@antjs/ant-js": "^1.0.0-beta.7",
-    "@antjs/ant-sql": "^1.0.0-beta.0",
+    "@antjs/ant-sql": "^1.0.0-beta.1",
     "pg": "^7.12.1"
   },
   "devDependencies": {
