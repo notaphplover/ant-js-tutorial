@@ -21,7 +21,7 @@ async function getFiles(dir) {
 const foldersToClear = [
   __dirname + '/../step-2-adding-a-model/ts',
   __dirname + '/../step-3-adding-simple-queries/ts',
-  __dirname + '/../step-3-adding-queries/ts',
+  __dirname + '/../step-4-adding-queries/ts',
 ];
 const fileExtensions = [
   '.js',
