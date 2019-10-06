@@ -24,9 +24,7 @@ export class UserQueriesProvider implements IQueryInjector<IUser> {
     userModel: IAntSqlModel,
   ): IPrimaryQueryManager<IUser> {
     return userManager.query<number>(
-      userManager.cfgGen.byUniqueField<number>(
-        userModel.getColumn('username'),
-      ),
+      userManager.cfgGen.byUniqueField<number>(userModel.getColumn('username')),
     ) as IPrimaryQueryManager<IUser>;
   }
 }

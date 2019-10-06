@@ -28,9 +28,9 @@ class UserQueriesProvider {
    * @returns { import('@antjs/ant-js/src/persistence/primary/query/SingleResultQueryManager') } Query manager created.
    */
   _addUserByUsernameQuery(userManager, userModel) {
-    return userManager.query(userManager.cfgGen.byUniqueField(
-      userModel.getColumn('username'),
-    ));
+    return userManager.query(
+      userManager.cfgGen.byUniqueField(userModel.getColumn('username')),
+    );
   }
 }
 
