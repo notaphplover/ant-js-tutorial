@@ -5,7 +5,7 @@ class UserQueriesProvider {
   /**
    * Injects queries in the user manager and returns the query managers generated.
    * @param { import('knex') } knex Knex instance.
-   * @param { import('@antjs/ant-sql/src/api/AntSqlModelManager').AntSqlModelManager } antModelManager User manager
+   * @param { import('@antjs/ant-sql/src/api/IAntSqlModelManager').IAntSqlModelManager } antModelManager User manager
    * @param { import('@antjs/ant-sql/src/model/AntSqlModel').AntSqlModel } model User model
    * @returns { object } Queries object.
    */
@@ -27,7 +27,7 @@ class UserQueriesProvider {
   /**
    * Adds a "users by username" query.
    * @param { import('knex') } knex Knex instance.
-   * @param { import('@antjs/ant-sql/src/api/AntSqlModelManager').AntSqlModelManager } userManager User manager
+   * @param { import('@antjs/ant-sql/src/api/IAntSqlModelManager').IAntSqlModelManager } userManager User manager
    * @param { import('@antjs/ant-sql/src/model/AntSqlModel').AntSqlModel } userModel User model
    * @returns { import('@antjs/ant-js/src/persistence/primary/query/SingleResultQueryManager') } Query manager created.
    */
@@ -71,7 +71,7 @@ class UserQueriesProvider {
   /**
    * Adds a "users starting with letter" query.
    * @param { import('knex') } knex Knex instance.
-   * @param { import('@antjs/ant-sql/src/api/AntSqlModelManager').AntSqlModelManager } userManager User manager
+   * @param { import('@antjs/ant-sql/src/api/IAntSqlModelManager').IAntSqlModelManager } userManager User manager
    * @param { import('@antjs/ant-sql/src/model/AntSqlModel').AntSqlModel } userModel User model
    * @returns { import('@antjs/ant-js/src/persistence/primary/query/MultipleResultQueryManager') } query manager created.
    */

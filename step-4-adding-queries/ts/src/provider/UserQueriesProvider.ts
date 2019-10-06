@@ -1,6 +1,5 @@
-import { IAntModelManager } from '@antjs/ant-js/src/api/IAntModelManager';
 import { IPrimaryQueryManager } from '@antjs/ant-js/src/persistence/primary/query/IPrimaryQueryManager';
-import { IAntSqlModelConfig } from '@antjs/ant-sql/src/api/config/IAntSqlModelConfig';
+import { IAntSqlModelManager } from '@antjs/ant-sql/src/api/IAntSqlModelManager';
 import { IAntSqlModel } from '@antjs/ant-sql/src/model/IAntSqlModel';
 import * as Knex from 'knex';
 import { IUser } from '../entity/IUser';
@@ -10,7 +9,7 @@ export class UserQueriesProvider implements IQueryInjector<IUser> {
 
   public injectQueries(
     knex: Knex,
-    antModelManager: IAntModelManager<IUser, IAntSqlModelConfig>,
+    antModelManager: IAntSqlModelManager<IUser>,
     model: IAntSqlModel,
   ): { [key: string]: IPrimaryQueryManager<IUser>; } {
     return {
@@ -25,7 +24,7 @@ export class UserQueriesProvider implements IQueryInjector<IUser> {
 
   private _addUsersByUsernameQuery(
     knex: Knex,
-    userManager: IAntModelManager<IUser, IAntSqlModelConfig>,
+    userManager: IAntSqlModelManager<IUser>,
     userModel: IAntSqlModel,
   ): IPrimaryQueryManager<IUser> {
     const usersByUsername = (params: any) => {
@@ -56,7 +55,7 @@ export class UserQueriesProvider implements IQueryInjector<IUser> {
 
   private _addUsersStartingByLetterQuery(
     knex: Knex,
-    userManager: IAntModelManager<IUser, IAntSqlModelConfig>,
+    userManager: IAntSqlModelManager<IUser>,
     userModel: IAntSqlModel,
   ): IPrimaryQueryManager<IUser> {
     const usersStaringByLetterDBQuery = (params: any) => {

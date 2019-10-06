@@ -1,6 +1,5 @@
 import { IEntity } from '@antjs/ant-js/src/model/IEntity';
 import { IPrimaryQueryManager } from '@antjs/ant-js/src/persistence/primary/query/IPrimaryQueryManager';
-import { IAntSqlModelConfig } from '@antjs/ant-sql/src/api/config/IAntSqlModelConfig';
 import { IAntSqlModelManager } from '@antjs/ant-sql/src/api/IAntSqlModelManager';
 import { IAntSqlModel } from '@antjs/ant-sql/src/model/IAntSqlModel';
 import * as Knex from 'knex';
