@@ -1,10 +1,8 @@
-import { IEntity } from '@antjs/ant-js/src/model/IEntity';
-import { IPrimaryQueryManager } from '@antjs/ant-js/src/persistence/primary/query/IPrimaryQueryManager';
-import { IAntSqlModelManager } from '@antjs/ant-sql/src/api/IAntSqlModelManager';
-import { IAntSqlModel } from '@antjs/ant-sql/src/model/IAntSqlModel';
+import { ApiMultipleResultQueryManager, ApiSingleResultQueryManager, Entity } from '@antjs/ant-js';
+import { ApiSqlModelManager, SqlModel } from '@antjs/ant-sql';
 import * as Knex from 'knex';
 
-export interface IQueryInjector<TEntity extends IEntity> {
+export interface IQueryInjector<TEntity extends Entity> {
 
   /**
    * Injects queries in an AntJS model manager.
@@ -14,7 +12,7 @@ export interface IQueryInjector<TEntity extends IEntity> {
    */
   injectQueries(
     knex: Knex,
-    antModelManager: IAntSqlModelManager<TEntity>,
-    model: IAntSqlModel,
-  ): { [key: string]: IPrimaryQueryManager<TEntity> };
+    antModelManager: ApiSqlModelManager<TEntity>,
+    model: SqlModel,
+  ): { [key: string]: ApiMultipleResultQueryManager<TEntity> | ApiSingleResultQueryManager<TEntity> };
 }

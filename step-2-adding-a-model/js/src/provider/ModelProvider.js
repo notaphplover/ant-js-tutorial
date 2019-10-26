@@ -1,6 +1,6 @@
 'use strict';
 
-const { AntSqlModel } = require('@antjs/ant-sql/src/model/AntSqlModel');
+const { AntSqlModel } = require('@antjs/ant-sql');
 
 const userModel = new AntSqlModel(
   'id',

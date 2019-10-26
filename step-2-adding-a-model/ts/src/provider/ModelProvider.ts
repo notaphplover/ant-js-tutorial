@@ -1,4 +1,4 @@
-import { AntSqlModel } from '@antjs/ant-sql/src/model/AntSqlModel';
+import { AntSqlModel } from '@antjs/ant-sql';
 
 const userModel = new AntSqlModel(
   'id',

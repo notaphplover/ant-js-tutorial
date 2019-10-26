@@ -1,6 +1,5 @@
-import { IPrimaryQueryManager } from '@antjs/ant-js/src/persistence/primary/query/IPrimaryQueryManager';
-import { IAntSqlModelManager } from '@antjs/ant-sql/src/api/IAntSqlModelManager';
-import { IAntSqlModel } from '@antjs/ant-sql/src/model/IAntSqlModel';
+import { ApiMultipleResultQueryManager, ApiSingleResultQueryManager } from '@antjs/ant-js';
+import { ApiSqlModelConfig, ApiSqlModelManager, SqlModel } from '@antjs/ant-sql';
 import * as Knex from 'knex';
 import { IUser } from '../entity/IUser';
 import { IQueryInjector } from './IQueryInjector';
@@ -9,9 +8,9 @@ export class UserQueriesProvider implements IQueryInjector<IUser> {
 
   public injectQueries(
     knex: Knex,
-    antModelManager: IAntSqlModelManager<IUser>,
-    model: IAntSqlModel,
-  ): { [key: string]: IPrimaryQueryManager<IUser>; } {
+    antModelManager: ApiSqlModelManager<IUser>,
+    model: SqlModel,
+  ): { [key: string]: ApiMultipleResultQueryManager<IUser> | ApiSingleResultQueryManager<IUser>; } {
     return {
       usersByUsernameQuery: this._addUsersByUsernameQuery(
         knex, antModelManager, model,
@@ -24,9 +23,9 @@ export class UserQueriesProvider implements IQueryInjector<IUser> {
 
   private _addUsersByUsernameQuery(
     knex: Knex,
-    userManager: IAntSqlModelManager<IUser>,
-    userModel: IAntSqlModel,
-  ): IPrimaryQueryManager<IUser> {
+    userManager: ApiSqlModelManager<IUser>,
+    userModel: SqlModel,
+  ): ApiSingleResultQueryManager<IUser> {
     const usersByUsername = (params: any) => {
       if (!params) {
         throw new Error('Expected params!');
@@ -50,14 +49,14 @@ export class UserQueriesProvider implements IQueryInjector<IUser> {
       query: usersByUsername,
       queryKeyGen: (params: any) => 'user/name::' + params.letter,
       reverseHashKey: 'user/name/reverse',
-    }) as IPrimaryQueryManager<IUser>;
+    });
   }
 
   private _addUsersStartingByLetterQuery(
     knex: Knex,
-    userManager: IAntSqlModelManager<IUser>,
-    userModel: IAntSqlModel,
-  ): IPrimaryQueryManager<IUser> {
+    userManager: ApiSqlModelManager<IUser>,
+    userModel: SqlModel,
+  ): ApiMultipleResultQueryManager<IUser> {
     const usersStaringByLetterDBQuery = (params: any) => {
       if (!params) {
         throw new Error('Expected params!');
@@ -79,6 +78,6 @@ export class UserQueriesProvider implements IQueryInjector<IUser> {
       query: usersStaringByLetterDBQuery,
       queryKeyGen: (params: any) => 'user/name-start::' + params.letter,
       reverseHashKey: 'user/name-start/reverse',
-    }) as IPrimaryQueryManager<IUser>;
+    });
   }
 }

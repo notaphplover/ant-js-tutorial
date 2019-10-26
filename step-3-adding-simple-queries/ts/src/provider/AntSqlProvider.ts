@@ -1,5 +1,4 @@
-import { AntSqlManager } from '@antjs/ant-sql';
-import { IAntSqlModelManager } from '@antjs/ant-sql/src/api/IAntSqlModelManager';
+import { AntSqlManager, ApiSqlModelManager } from '@antjs/ant-sql';
 import { IUser } from '../entity/IUser';
 import { knex } from './DBProvider';
 import { userModel } from './ModelProvider';
@@ -13,7 +12,7 @@ const manager = new AntSqlManager().config({
   },
 });
 
-const userManager = manager.get(userModel) as IAntSqlModelManager<IUser>;
+const userManager = manager.get(userModel) as ApiSqlModelManager<IUser>;
 
 const { userByUsernameQuery } = new UserQueriesProvider().injectQueries(
   knex, userManager, userModel,

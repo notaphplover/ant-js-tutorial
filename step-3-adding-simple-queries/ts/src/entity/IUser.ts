@@ -1,6 +1,6 @@
-import { IEntity } from '@antjs/ant-js/src/model/IEntity';
+import { Entity } from '@antjs/ant-js';
 
-export interface IUser extends IEntity {
+export interface IUser extends Entity {
   /**
    * User id.
    */
