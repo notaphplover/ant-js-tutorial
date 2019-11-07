@@ -46,7 +46,7 @@ export class UserQueriesProvider implements IQueryInjector<IUser> {
     return userManager.query<number>({
       isMultiple: false,
       query: usersByUsername,
-      queryKeyGen: (params: any) => 'user/name::' + params.letter,
+      queryKeyGen: (params: any) => 'user/name::' + params.username,
       reverseHashKey: 'user/name/reverse',
     });
   }
