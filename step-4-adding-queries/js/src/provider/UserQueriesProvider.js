@@ -1,25 +1,25 @@
 'use strict';
 
+const { userModel } = require('./ModelProvider');
+
 class UserQueriesProvider {
 
   /**
    * Injects queries in the user manager and returns the query managers generated.
    * @param { import('knex') } knex Knex instance.
    * @param { import('@antjs/ant-sql').ApiSqlModelManager } antModelManager User manager
-   * @param { import('@antjs/ant-sql').AntSqlModel } model User model
    * @returns { object } Queries object.
    */
   injectQueries(
     knex,
     antModelManager,
-    model,
   ) {
     return {
       usersByUsernameQuery: this._addUsersByUsernameQuery(
-        knex, antModelManager, model,
+        knex, antModelManager,
       ),
       usersStartingByLetterQuery: this._addUsersStartingByLetterQuery(
-        knex, antModelManager, model,
+        knex, antModelManager,
       ),
     };
   }
@@ -28,13 +28,11 @@ class UserQueriesProvider {
    * Adds a "users by username" query.
    * @param { import('knex') } knex Knex instance.
    * @param { import('@antjs/ant-sql').ApiSqlModelManager } userManager User manager
-   * @param { import('@antjs/ant-sql').AntSqlModel } userModel User model
    * @returns { import('@antjs/ant-js').ApiSingleResultQueryManager } Query manager created.
    */
   _addUsersByUsernameQuery(
     knex,
     userManager,
-    userModel,
   ) {
     /**
      * Serachs for an user whose username is the username provided.
@@ -71,14 +69,12 @@ class UserQueriesProvider {
   /**
    * Adds a "users starting with letter" query.
    * @param { import('knex') } knex Knex instance.
-   * @param { import('@antjs/ant-sql').ApiSqlModelManager } userManager User manager
-   * @param { import('@antjs/ant-sql').AntSqlModel } userModel User model
+   * @param { import('@antjs/ant-sql').ApiSqlModelManager } userManager User manager.
    * @returns { import('@antjs/ant-js').ApiMultipleResultQueryManager } Query manager created.
    */
   _addUsersStartingByLetterQuery(
     knex,
     userManager,
-    userModel,
   ) {
     /**
      * Search fot users whose username starts with a letter.

@@ -17,7 +17,7 @@ manager.config({
 const userManager = manager.get(userModel);
 
 const { userByUsernameQuery } = new UserQueriesProvider().injectQueries(
-  knex, userManager, userModel,
+  knex, userManager,
 );
 
 module.exports = {

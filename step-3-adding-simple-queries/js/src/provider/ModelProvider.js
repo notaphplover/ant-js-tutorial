@@ -1,18 +1,27 @@
 'use strict';
 
-const { AntSqlModel } = require('@antjs/ant-sql');
+const { SqlType } = require('@antjs/ant-sql');
 
-const userModel = new AntSqlModel(
-  'id',
-  { prefix: 'user::' },
-  [{
-    entityAlias: 'id',
-    sqlName: 'id',
-  }, {
-    entityAlias: 'username',
-    sqlName: 'username',
-  }],
-  'User',
-);
+const idColumn = {
+  entityAlias: 'id',
+  sqlName: 'id',
+  type: SqlType.Integer,
+};
 
-module.exports = { userModel };
+const usernameColumn = {
+  entityAlias: 'username',
+  sqlName: 'username',
+  type: SqlType.String,
+};
+
+const userModel = {
+  columns: [
+    idColumn,
+    usernameColumn,
+  ],
+  id: 'id',
+  keyGen: { prefix: 'user::' },
+  tableName: 'User',
+}
+
+module.exports = { idColumn, userModel, usernameColumn };
