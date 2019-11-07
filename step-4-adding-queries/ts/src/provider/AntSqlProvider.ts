@@ -19,7 +19,7 @@ const {
   usersByUsernameQuery,
   usersStartingByLetterQuery,
 } = new UserQueriesProvider().injectQueries(
-  knex, userManager, userModel,
+  knex, userManager,
 );
 
 export {

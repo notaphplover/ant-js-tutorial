@@ -1,22 +1,22 @@
 import { ApiMultipleResultQueryManager, ApiSingleResultQueryManager } from '@antjs/ant-js';
-import { ApiSqlModelConfig, ApiSqlModelManager, SqlModel } from '@antjs/ant-sql';
+import { ApiSqlModelManager } from '@antjs/ant-sql';
 import * as Knex from 'knex';
 import { IUser } from '../entity/IUser';
 import { IQueryInjector } from './IQueryInjector';
+import { userModel, usernameColumn } from './ModelProvider';
 
 export class UserQueriesProvider implements IQueryInjector<IUser> {
 
   public injectQueries(
     knex: Knex,
     antModelManager: ApiSqlModelManager<IUser>,
-    model: SqlModel,
   ): { [key: string]: ApiMultipleResultQueryManager<IUser> | ApiSingleResultQueryManager<IUser>; } {
     return {
       usersByUsernameQuery: this._addUsersByUsernameQuery(
-        knex, antModelManager, model,
+        knex, antModelManager,
       ),
       usersStartingByLetterQuery: this._addUsersStartingByLetterQuery(
-        knex, antModelManager, model,
+        knex, antModelManager,
       ),
     };
   }
@@ -24,7 +24,6 @@ export class UserQueriesProvider implements IQueryInjector<IUser> {
   private _addUsersByUsernameQuery(
     knex: Knex,
     userManager: ApiSqlModelManager<IUser>,
-    userModel: SqlModel,
   ): ApiSingleResultQueryManager<IUser> {
     const usersByUsername = (params: any) => {
       if (!params) {
@@ -37,7 +36,7 @@ export class UserQueriesProvider implements IQueryInjector<IUser> {
       return knex
         .select(userModel.id)
         .from(userModel.tableName)
-        .where('username', username)
+        .where(usernameColumn.sqlName, username)
         .first()
         .then(
           (result: { id: number }) => result ? result.id : null,
@@ -55,7 +54,6 @@ export class UserQueriesProvider implements IQueryInjector<IUser> {
   private _addUsersStartingByLetterQuery(
     knex: Knex,
     userManager: ApiSqlModelManager<IUser>,
-    userModel: SqlModel,
   ): ApiMultipleResultQueryManager<IUser> {
     const usersStaringByLetterDBQuery = (params: any) => {
       if (!params) {
@@ -68,7 +66,7 @@ export class UserQueriesProvider implements IQueryInjector<IUser> {
       return knex
         .select(userModel.id)
         .from(userModel.tableName)
-        .where('username', 'like', letter + '%')
+        .where(usernameColumn.sqlName, 'like', letter + '%')
         .then(
           (results: Array<{ id: number }>) => results.map((result) => result.id),
         ) as unknown as Promise<number[]>;

@@ -27,15 +27,15 @@
   "author": "Roberto Pintos López",
   "license": "ISC",
   "dependencies": {
-    "@antjs/ant-js": "^1.0.0-beta.13",
-    "@antjs/ant-sql": "^1.0.0-beta.10",
+    "@antjs/ant-js": "^1.0.0-beta.16",
+    "@antjs/ant-sql": "^1.0.0-beta.15",
     "ioredis": "^4.14.1",
     "pg": "^7.12.1"
   },
   "devDependencies": {
-    "@types/bluebird": "^3.5.27",
-    "@types/ioredis": "^4.0.12",
-    "tslint": "^5.15.0",
-    "typescript": "^3.5.2"
+    "@types/bluebird": "^3.5.28",
+    "@types/ioredis": "^4.0.18",
+    "tslint": "^5.20.1",
+    "typescript": "^3.7.2"
   }
 }

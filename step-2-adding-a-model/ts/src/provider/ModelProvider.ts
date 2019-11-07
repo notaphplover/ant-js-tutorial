@@ -1,16 +1,23 @@
-import { AntSqlModel } from '@antjs/ant-sql';
+import { ApiSqlModel, SqlColumn, SqlType } from '@antjs/ant-sql';
 
-const userModel = new AntSqlModel(
-  'id',
-  { prefix: 'user::' },
-  [{
-    entityAlias: 'id',
-    sqlName: 'id',
-  }, {
-    entityAlias: 'username',
-    sqlName: 'username',
-  }],
-  'User',
-);
+export const idColumn: SqlColumn = {
+  entityAlias: 'id',
+  sqlName: 'id',
+  type: SqlType.Integer,
+};
 
-export { userModel };
+export const usernameColumn: SqlColumn = {
+  entityAlias: 'username',
+  sqlName: 'username',
+  type: SqlType.String,
+};
+
+export const userModel: ApiSqlModel = {
+  columns: [
+    idColumn,
+    usernameColumn,
+  ],
+  id: 'id',
+  keyGen: { prefix: 'user::' },
+  tableName: 'User',
+};

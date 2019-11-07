@@ -15,7 +15,7 @@ const manager = new AntSqlManager().config({
 const userManager = manager.get(userModel) as ApiSqlModelManager<IUser>;
 
 const { userByUsernameQuery } = new UserQueriesProvider().injectQueries(
-  knex, userManager, userModel,
+  knex, userManager,
 );
 
 export {

@@ -1,5 +1,5 @@
 import { ApiMultipleResultQueryManager, ApiSingleResultQueryManager, Entity } from '@antjs/ant-js';
-import { ApiSqlModelManager, SqlModel } from '@antjs/ant-sql';
+import { ApiSqlModelManager } from '@antjs/ant-sql';
 import * as Knex from 'knex';
 
 export interface IQueryInjector<TEntity extends Entity> {
@@ -13,6 +13,5 @@ export interface IQueryInjector<TEntity extends Entity> {
   injectQueries(
     knex: Knex,
     antModelManager: ApiSqlModelManager<TEntity>,
-    model: SqlModel,
   ): { [key: string]: ApiMultipleResultQueryManager<TEntity> | ApiSingleResultQueryManager<TEntity> };
 }
