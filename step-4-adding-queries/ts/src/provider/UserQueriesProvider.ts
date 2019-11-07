@@ -40,7 +40,7 @@ export class UserQueriesProvider implements IQueryInjector<IUser> {
         .first()
         .then(
           (result: { id: number }) => result ? result.id : null,
-        ) as unknown as Promise<number>;
+        );
     };
 
     return userManager.query<number>({
@@ -69,7 +69,7 @@ export class UserQueriesProvider implements IQueryInjector<IUser> {
         .where(usernameColumn.sqlName, 'like', letter + '%')
         .then(
           (results: Array<{ id: number }>) => results.map((result) => result.id),
-        ) as unknown as Promise<number[]>;
+        );
     };
     return userManager.query<number[]>({
       isMultiple: true,
